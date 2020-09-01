@@ -15,7 +15,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true 
     hibernate:      ddl-auto: update
-      naming:        implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy
     open-in-view: false
 server:
 #  address: restfull

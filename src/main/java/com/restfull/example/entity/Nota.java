@@ -1,5 +1,7 @@
 package com.restfull.example.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,7 @@ import javax.persistence.Table;
 
 @Table(name = "NOTA")
 @Entity
-public class Nota {
+public class Nota implements Serializable {
 
 	/**
 	 * este es el constructor que va acceder Hibernate
