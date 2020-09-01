@@ -5,7 +5,6 @@ spring:
 #  thymeleaf: para realizar la configuracion ver en la pagina de configuracion spring.thymeleaf.... todo lo relacionado
 #DataBase Properties
   datasource:
-    driver-class-name: oracle.jdbc.driver.OracleDriver
     url: jdbc:mysql://192.168.56.103:33060/restspring
     username: root
     password: secret
@@ -16,9 +15,10 @@ spring:
         dialect: org.hibernate.dialect.MySQL8Dialect
     show-sql: true 
     hibernate:      ddl-auto: update
-      naming:        implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy 
+      naming:        implicit-strategy: org.hibernate.cfg.ImprovedNamingStrategy
+    open-in-view: false
 server:
-  address: restfull
+#  address: restfull
   port: ${PORT:8090}
   error:    whitelabel:      enabled: false
     
