@@ -57,7 +57,7 @@ public class WebSecurity extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable().authorizeRequests() // desactiva el login por defecto
-				.antMatchers("/login").permitAll() // permitimos el acceso a /login a cualquiera
+				.antMatchers("/login","/nota/all").permitAll() // permitimos el acceso a "/login" o cualquier path que se pone
 				.anyRequest().authenticated() // qualquiera otra peticion requiere autenticacion
 				.and()
 				// Las peticiones /login pasaran previamente por este filtro
