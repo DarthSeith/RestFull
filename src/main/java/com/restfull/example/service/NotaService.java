@@ -32,13 +32,15 @@ public class NotaService {
 	}
 
 	/**
-	 * 
+	 * se valida si existe el objeto con el ID, si esta se modifica
 	 * @param nota
 	 * @return
 	 */
 	public boolean actualizar(Nota nota) {
 		try {
-			notaRepository.save(nota);
+			if(notaRepository.existsById(nota.getId())) {
+				notaRepository.save(nota);
+			}
 			return Boolean.TRUE;
 		} catch (Exception e) {
 			return Boolean.FALSE;
