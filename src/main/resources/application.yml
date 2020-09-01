@@ -2,7 +2,6 @@
 spring:
   banner:
       location: classpath:/banner/banner.txt
-#  thymeleaf: para realizar la configuracion ver en la pagina de configuracion spring.thymeleaf.... todo lo relacionado
 #DataBase Properties
   datasource:
     url: jdbc:mysql://192.168.56.103:33060/restspring
@@ -16,8 +15,13 @@ spring:
     show-sql: true 
     hibernate:      ddl-auto: update
     open-in-view: false
+#para paginacion de la api de la consulta RestFull
+  data:    rest:      page-param-name: page #es el nombre que va a tener en el parametro para pagina
+      limit-param-name: limite #es el nombre que va a tener en el parametro para el limite
+      default-page-size: 5
+      max-page-size: 10 
+# propiedades del ResFull
 server:
-#  address: restfull
   port: ${PORT:8090}
   error:    whitelabel:      enabled: false
-    
+   

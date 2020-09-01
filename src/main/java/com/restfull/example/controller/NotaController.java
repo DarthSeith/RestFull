@@ -2,8 +2,11 @@ package com.restfull.example.controller;
 
 import java.util.List;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +24,7 @@ import com.restfull.example.service.NotaService;
 @RequestMapping("/v1")
 public class NotaController {
 
+	public static final Log LOGGER = LogFactory.getLog(NotaController.class);
 	@Autowired // vamos a inyectar un bean
 	@Qualifier("servicio") // cual es el bean que vamos a utilizar
 	private NotaService notaService;
@@ -73,6 +77,17 @@ public class NotaController {
 	@GetMapping("/notas")
 	public List<MNota> obtenerNotas(){
 		return notaService.obtener();
+	}
+	
+	/**
+	 * los parametros para que pagina la consulta
+	 * http://localhost:8090/v1/notas-paginacion?page=0&size=6
+	 * @param pageable
+	 * @return
+	 */
+	@GetMapping("/notas-paginacion")
+	public List<MNota> obtenerNotasPorPaginacion(Pageable pageable){
+		return notaService.obtenerPorPaginacion(pageable);
 	}
 	
 }

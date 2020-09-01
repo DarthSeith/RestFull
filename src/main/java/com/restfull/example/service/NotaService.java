@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.restfull.example.converter.Convertidor;
@@ -33,12 +34,13 @@ public class NotaService {
 
 	/**
 	 * se valida si existe el objeto con el ID, si esta se modifica
+	 * 
 	 * @param nota
 	 * @return
 	 */
 	public boolean actualizar(Nota nota) {
 		try {
-			if(notaRepository.existsById(nota.getId())) {
+			if (notaRepository.existsById(nota.getId())) {
 				notaRepository.save(nota);
 			}
 			return Boolean.TRUE;
@@ -90,5 +92,17 @@ public class NotaService {
 	 */
 	public List<MNota> findByTitulo(String titulo) {
 		return convertidor.convertirLista(notaRepository.findByTitulo(titulo));
+	}
+
+	/**
+	 * obtiene una lista de MNota por el titulo y ver el metodo
+	 * notaRepository.findAll(pageable).getContent() que retorna automaticamente una
+	 * lista de objeto Entity Nota
+	 * 
+	 * @param pageable
+	 * @return
+	 */
+	public List<MNota> obtenerPorPaginacion(Pageable pageable) {
+		return convertidor.convertirLista(notaRepository.findAll(pageable).getContent());
 	}
 }
